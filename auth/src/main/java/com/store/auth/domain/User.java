@@ -1,5 +1,6 @@
 package com.store.auth.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -36,5 +37,6 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY, optional=true)
     @JoinColumn(name = "company_id")
+    @JsonBackReference
     private Company company;
 }
