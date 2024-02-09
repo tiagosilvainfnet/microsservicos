@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="user")
+@Table(name="`user`")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,5 +31,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-//    private Company company;
+    @Column(nullable = false)
+    private String role;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional=true)
+    @JoinColumn(name = "company_id")
+    private Company company;
 }
