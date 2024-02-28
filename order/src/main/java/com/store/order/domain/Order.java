@@ -37,7 +37,8 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderItem> orderItems = new HashSet<>();
 
-    public void onCreate(){
+    @PrePersist
+    protected void onCreate(){
         createdAt = LocalDateTime.now();
     }
 }

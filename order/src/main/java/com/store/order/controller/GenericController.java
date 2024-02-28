@@ -1,13 +1,12 @@
-package com.store.auth.controller;
+package com.store.order.controller;
 
-import com.store.auth.service.GenericService;
+import com.store.order.service.GenericService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 public class GenericController<T> {
@@ -21,12 +20,8 @@ public class GenericController<T> {
 
     @GetMapping("/{id}")
     public ResponseEntity<T> get(@PathVariable Long id, String noSuchElementException){
-        try{
-            T item = service.get(id, noSuchElementException);
-            return new ResponseEntity<>(item, HttpStatus.OK);
-        }catch (NoSuchElementException e){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
+        T item = service.get(id, noSuchElementException);
+        return new ResponseEntity<>(item, HttpStatus.OK);
     }
 
     @PostMapping
